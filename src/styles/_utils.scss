@@ -1,0 +1,25 @@
+// Shared CSS rules
+
+.a-center { // TODO refactor into function ?
+  text-align: center;
+}
+
+.a-right {
+  text-align: right;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
+.first-place {
+  color: $yellow;
+}
+
+.second-place {
+  color: $blue;
+}
+
+.strong {
+  font-weight: bold;
+}

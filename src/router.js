@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import History from './views/History.vue';
+import Players from './views/Players.vue';
+import Standings from './views/Standings.vue';
 
 Vue.use(Router);
 
@@ -10,6 +13,21 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History,
+    },
+    {
+      path: '/players',
+      name: 'players',
+      component: Players,
+    },
+    {
+      path: '/standings',
+      name: 'standings',
+      component: Standings,
     },
     {
       path: '/about',

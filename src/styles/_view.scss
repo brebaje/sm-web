@@ -1,0 +1,14 @@
+// Views shared CSS
+
+%view {
+  padding: 0 25px 15px 25px;
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+
+    @include sm-screen {
+      display: none;
+    }
+  }
+}
