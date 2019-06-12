@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="view">
     <h1 class="title strong a-center">Hermanos de Babas <span class="xx">XV ed.</span></h1>
-    <h2 class="sub-title strong a-center"><span class="sm">A Supermanager private league</span></h2>
+    <h2 class="sub-title strong a-center"><span class="sm">A Supermanager ACB private league</span></h2>
     <div class="content">
       <p class="a-center">Coming soon!</p>
     </div>
