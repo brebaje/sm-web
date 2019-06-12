@@ -62,7 +62,6 @@ export default {
         const data = await PlayersService.getPlayers();
         // 'a' !== 'A' therefore the lowerCase
         this.players = _.sortBy(data, player => _.lowerCase(player.nick));
-        console.dir(this.players);
       }
       catch (error) {
         throw error; // TODO show error in component ?
