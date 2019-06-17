@@ -82,6 +82,7 @@ export default {
     a {
       display: inline-block;
 
+      &:hover,
       &.router-link-exact-active {
         color: orange;
       }
@@ -103,10 +104,6 @@ export default {
       color: $text;
     }
 
-    &:hover {
-      color: $purple;
-    }
-
     &.router-link-exact-active {
       &:hover {
         text-decoration: none;
@@ -114,24 +111,28 @@ export default {
     }
 
     &.nav-players {
+      &:hover,
       &.router-link-exact-active {
         color: $red;
       }
     }
 
     &.nav-standings {
+      &:hover,
       &.router-link-exact-active {
         color: $green;
       }
     }
 
     &.nav-history {
+      &:hover,
       &.router-link-exact-active {
         color: $yellow;
       }
     }
 
     &.nav-about {
+      &:hover,
       &.router-link-exact-active {
         color: $blue;
       }
