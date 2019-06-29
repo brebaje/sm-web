@@ -1,3 +1,7 @@
+@mixin xs-screen {
+  @media (min-width: 350px) { @content; }
+}
+
 @mixin sm-screen {
   @media (min-width: 550px) { @content; }
 }

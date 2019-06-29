@@ -3,7 +3,9 @@ import {
   faBabyCarriage,
   faBasketballBall,
   faCocktail,
+  faCode,
   faDrumstickBite,
+  faExternalLinkAlt,
   faGlobeAmericas,
   faGuitar,
   faHatWizard,
@@ -28,23 +30,37 @@ import {
   faChartBar,
 } from '@fortawesome/free-regular-svg-icons';
 
+import {
+  faFontAwesome,
+  faGithubSquare,
+  faNode,
+  faSass,
+  faVuejs,
+} from '@fortawesome/free-brands-svg-icons';
+
 const icons = {
   faBabyCarriage,
   faBasketballBall,
   faCocktail,
+  faCode,
   faChartBar,
   faDrumstickBite,
+  faExternalLinkAlt,
+  faFontAwesome,
+  faGithubSquare,
   faGlobeAmericas,
   faGuitar,
   faHatWizard,
   faHome,
   faMedal,
+  faNode,
   faParking,
   faQuestion,
   faQuestionCircle,
   faQuoteLeft,
   faQuoteRight,
   faRunning,
+  faSass,
   faTimesCircle,
   faTooth,
   faTrophy,
@@ -52,6 +68,7 @@ const icons = {
   faUsers,
   faUserGraduate,
   faUserMd,
+  faVuejs,
 };
 
 export default () => {
