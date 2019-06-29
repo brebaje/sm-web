@@ -93,7 +93,11 @@ table {
   }
 
   td {
-    padding: 10px 15px;
+    padding: 10px 5px;
+
+    @include sm-screen {
+      padding: 10px 15px;
+    }
 
     .award {
       display: inline-block;

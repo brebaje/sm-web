@@ -46,7 +46,11 @@ export default {
 // TODO DRY refactor pending
 table {
   border-collapse: collapse;
-  margin: 0 15px 15px 0;
+  margin: 0 0 15px 0;
+
+  @include lg-screen {
+    margin: 0 15px 15px 0;
+  }
 
   thead {
     td {
@@ -60,9 +64,9 @@ table {
   }
 
   td {
-    padding: 10px;
+    padding: 10px 5px;
 
-    @include m-screen {
+    @include sm-screen {
       padding: 10px 15px;
     }
 
