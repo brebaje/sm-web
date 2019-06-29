@@ -55,6 +55,9 @@
           </div>
         </div>
       </div>
+      <p class="author-text">
+        Coded with <font-awesome-icon icon="heart" class="heart" /> by <a href="http://brebaje.es" class="author-link">@brebaje</a>
+      </p>
     </div>
   </div>
 </template>
@@ -127,6 +130,26 @@ export default {
           @include sm-screen {
             justify-content: normal;
           }
+        }
+      }
+    }
+
+    .author-text {
+      font-family: $mainFont;
+      font-weight: bold;
+
+      .heart {
+        color: $green;
+      }
+
+      .author-link {
+        color: $blue;
+        text-decoration: none;
+
+        &:focus,
+        &:hover,
+        &:visited {
+          color: $blue;
         }
       }
     }
