@@ -24,7 +24,6 @@
           :bounds="{ width: 350, height: 100 }"
           :stroke="2"
           :key="item._id"
-          :bio="false"
           v-for="item in inactivePlayers"
         >
           <slot>
