@@ -37,7 +37,7 @@ export default {
       errorMsg: 'Something went wrong :(<br>Please try again!',
       history: [],
       loading: false,
-      loadingMsg: 'Gathering history data...',
+      loadingMsg: 'Retrieving history data...',
       players: [],
     };
   },

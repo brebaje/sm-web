@@ -55,7 +55,7 @@ export default {
       error: false,
       errorMsg: 'Something went wrong :(<br>Please try again!',
       loading: false,
-      loadingMsg: 'Gathering players data...',
+      loadingMsg: 'Retrieving players data...',
       players: [],
     };
   },
