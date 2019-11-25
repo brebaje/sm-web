@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import _ from 'lodash';
 
 export default {
@@ -33,7 +34,12 @@ export default {
       board: [],
     };
   },
-  props: ['history', 'players'],
+  computed: {
+    ...mapState({
+      history: state => state.history,
+      players: state => state.players,
+    }),
+  },
   methods: {
     calcRankings() {
       if (!_.isEmpty(this.history) && !_.isEmpty(this.players)) {
@@ -42,8 +48,8 @@ export default {
         this.players.forEach((player) => {
           const p = {
             nick: player.nick,
-            w: 0,
-            s: 0,
+            w: 0, // winner
+            s: 0, // second place
             active: player.active ? 1 : 0,
           };
 
@@ -60,8 +66,6 @@ export default {
     },
   },
   watch: {
-    // both are obtained async in parent
-    // TODO maybe use state
     history: {
       handler() {
         this.calcRankings();

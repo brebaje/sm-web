@@ -36,8 +36,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import PlayersService from '@/services/players.service';
+import { mapState } from 'vuex';
 import ErrorMsg from '@/components/ErrorMsg.vue';
 import LoadingMsg from '@/components/LoadingMsg.vue';
 import Player from '@/components/Players/Player.vue';
@@ -52,14 +51,16 @@ export default {
   },
   data() {
     return {
-      error: false,
       errorMsg: 'Something went wrong :(<br>Please try again!',
-      loading: false,
       loadingMsg: 'Retrieving players data...',
-      players: [],
     };
   },
   computed: {
+    ...mapState({
+      error: state => state.error,
+      loading: state => state.loading,
+      players: state => state.players,
+    }),
     activePlayers() {
       return this.players.filter(p => p.active);
     },
@@ -67,26 +68,8 @@ export default {
       return this.players.filter(p => !p.active);
     },
   },
-  methods: {
-    async getData() {
-      this.error = false;
-      this.loading = true;
-
-      try {
-        const data = await PlayersService.getPlayers();
-        // 'a' !== 'A' therefore the lowerCase
-        this.players = _.sortBy(data, player => _.lowerCase(player.nick));
-      }
-      catch (error) {
-        this.error = true;
-      }
-      finally {
-        this.loading = false;
-      }
-    },
-  },
   created() {
-    this.getData();
+    if (this.players.length === 0) this.$store.dispatch('getPlayers');
   },
 };
 </script>

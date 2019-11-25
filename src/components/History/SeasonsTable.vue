@@ -24,8 +24,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  props: ['history'],
+  computed: {
+    ...mapState({
+      history: state => state.history,
+    }),
+  },
   methods: {
     toRoman(num) {
       // converts a number in range [0 - 40] to Roman (enough for now)

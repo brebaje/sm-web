@@ -5,19 +5,17 @@
     <LoadingMsg :message="loadingMsg" :top="100" v-else-if="loading" />
     <div class="history-content" v-else>
       <div id="seasons">
-        <SeasonsTable :history="history" />
+        <SeasonsTable />
       </div>
       <div id="leaderboard">
-        <LeaderboardTable :history="history" :players="players" />
+        <LeaderboardTable />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import _ from 'lodash';
-import HistoryService from '@/services/history.service';
-import PlayersService from '@/services/players.service';
+import { mapState } from 'vuex';
 import ErrorMsg from '@/components/ErrorMsg.vue';
 import LoadingMsg from '@/components/LoadingMsg.vue';
 import LeaderboardTable from '@/components/History/LeaderboardTable.vue';
@@ -33,36 +31,21 @@ export default {
   },
   data() {
     return {
-      error: false,
       errorMsg: 'Something went wrong :(<br>Please try again!',
-      history: [],
-      loading: false,
       loadingMsg: 'Retrieving history data...',
-      players: [],
     };
   },
-  methods: {
-    async getData() {
-      this.error = false;
-      this.loading = true;
-
-      try {
-        const hist = await HistoryService.getHistory();
-        this.history = _.sortBy(hist, 'year');
-
-        const plys = await PlayersService.getPlayers();
-        this.players = _.sortBy(plys, player => _.lowerCase(player.nick));
-      }
-      catch (error) {
-        this.error = true;
-      }
-      finally {
-        this.loading = false;
-      }
-    },
+  computed: {
+    ...mapState({
+      error: state => state.error,
+      history: state => state.history,
+      loading: state => state.loading,
+      players: state => state.players,
+    }),
   },
   created() {
-    this.getData();
+    if (this.history.length === 0) this.$store.dispatch('getHistory');
+    if (this.players.length === 0) this.$store.dispatch('getPlayers');
   },
 };
 </script>
