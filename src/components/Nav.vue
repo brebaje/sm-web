@@ -26,6 +26,7 @@
 
 <script>
 export default {
+  name: 'Nav',
   data() {
     return {
       iconSize: 'lg',

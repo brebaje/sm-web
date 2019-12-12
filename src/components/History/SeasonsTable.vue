@@ -27,6 +27,7 @@
 import { mapState } from 'vuex';
 
 export default {
+  name: 'SeasonsTable',
   computed: {
     ...mapState({
       history: state => state.history,

@@ -67,6 +67,7 @@ import { backend, frontend } from '@/data/techs';
 import Tech from '@/components/About/Tech.vue';
 
 export default {
+  name: 'About',
   components: {
     Tech,
   },

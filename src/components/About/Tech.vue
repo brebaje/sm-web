@@ -24,6 +24,7 @@ import mLab from '@/assets/mlab.svg';
 import mongodb from '@/assets/mongodb.svg';
 
 export default {
+  name: 'Tech',
   props: {
     data: {
       required: true,

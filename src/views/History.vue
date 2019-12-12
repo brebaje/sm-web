@@ -23,6 +23,7 @@ import SeasonsTable from '@/components/History/SeasonsTable.vue';
 
 // media-queries for margins
 export default {
+  name: 'History',
   components: {
     ErrorMsg,
     LoadingMsg,

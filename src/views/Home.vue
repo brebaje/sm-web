@@ -8,6 +8,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'Home',
+};
+</script>
+
 <style scoped lang="scss">
 @import "../styles/view";
 

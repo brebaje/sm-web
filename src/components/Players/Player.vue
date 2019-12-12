@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'Player',
   props: {
     data: {
       type: Object,

@@ -26,9 +26,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import _ from 'lodash';
+import isEmpty from 'lodash.isempty';
+import orderBy from 'lodash.orderby';
 
 export default {
+  name: 'LeaderboardTable',
   data() {
     return {
       board: [],
@@ -42,7 +44,7 @@ export default {
   },
   methods: {
     calcRankings() {
-      if (!_.isEmpty(this.history) && !_.isEmpty(this.players)) {
+      if (!isEmpty(this.history) && !isEmpty(this.players)) {
         const rankings = [];
 
         this.players.forEach((player) => {
@@ -61,7 +63,7 @@ export default {
           rankings.push(p);
         });
 
-        this.board = _.orderBy(rankings, ['w', 's', 'active', 'nick'], ['desc', 'desc', 'desc', 'asc']);
+        this.board = orderBy(rankings, ['w', 's', 'active', 'nick'], ['desc', 'desc', 'desc', 'asc']);
       }
     },
   },

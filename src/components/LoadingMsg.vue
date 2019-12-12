@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  name: 'LoadingMsg',
   props: {
     bottom: {
       default: 25,

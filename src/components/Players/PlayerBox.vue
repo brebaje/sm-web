@@ -34,6 +34,7 @@
 // adapted from https://gedd.ski/post/dynamic-svg-components/
 
 export default {
+  name: 'PlayerBox',
   data() {
     return {};
   },

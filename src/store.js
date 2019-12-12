@@ -1,31 +1,44 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import _ from 'lodash';
+import lowerCase from 'lodash.lowercase';
+import sortBy from 'lodash.sortby';
 import HistoryService from './services/history.service';
 import PlayersService from './services/players.service';
+import StandingsService from './services/standings.service';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    currentSeason: null,
     error: false,
     loading: false,
     history: [],
     players: [],
+    seasons: [],
     standings: [],
   },
   mutations: {
+    setCurrentSeason(state, data) {
+      state.currentSeason = data[0].Temporada;
+    },
     setError(state) {
       state.error = true;
     },
     setHistory(state, data) {
-      state.history = _.sortBy(data, 'year');
+      state.history = sortBy(data, 'year');
     },
     setLoading(state) {
       state.loading = true;
     },
     setPlayers(state, data) {
-      state.players = _.sortBy(data, player => _.lowerCase(player.nick));
+      state.players = sortBy(data, player => lowerCase(player.nick));
+    },
+    setSeasons(state, data) {
+      state.seasons = data.map(s => s.Temporada);
+    },
+    setStandings(state, data) {
+      state.standings = data;
     },
     unsetError(state) {
       state.error = false;
@@ -57,6 +70,37 @@ export default new Vuex.Store({
       try {
         const data = await PlayersService.getPlayers();
         commit('setPlayers', data);
+      }
+      catch (error) {
+        commit('setError');
+      }
+      finally {
+        commit('unsetLoading');
+      }
+    },
+    async getSeasons({ commit }) {
+      commit('unsetError');
+      commit('setLoading');
+
+      try {
+        const data = await StandingsService.getStandings();
+        commit('setSeasons', data);
+        commit('setCurrentSeason', data);
+      }
+      catch (error) {
+        commit('setError');
+      }
+      finally {
+        commit('unsetLoading');
+      }
+    },
+    async getStandings({ commit }, season) {
+      commit('unsetError');
+      commit('setLoading');
+
+      try {
+        const data = await StandingsService.getOne(season);
+        commit('setStandings', data);
       }
       catch (error) {
         commit('setError');

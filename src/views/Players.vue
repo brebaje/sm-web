@@ -43,6 +43,7 @@ import Player from '@/components/Players/Player.vue';
 import PlayerBox from '@/components/Players/PlayerBox.vue';
 
 export default {
+  name: 'Players',
   components: {
     ErrorMsg,
     LoadingMsg,
