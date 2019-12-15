@@ -7,6 +7,7 @@
           slot-scope="props"
           fill="white">
           <text
+            class="values"
             :x="props.x"
             :y="props.y"
             text-anchor='middle'
@@ -71,5 +72,13 @@ export default {
 
 .bar-chart {
   @extend %charts;
+
+  .values {
+    display: none;
+
+    @include lg-screen {
+      display: block;
+    }
+  }
 }
 </style>
