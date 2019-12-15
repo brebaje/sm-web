@@ -1,6 +1,6 @@
 <template>
-  <div class="line-chart">
-    <span class="chart-title strong">{{ chart }}</span>
+  <div class="bar-chart">
+    <span class="chart-title strong">Weekly</span>
     <Cartesian autoresize narrow :bound="[0]" :data="data">
       <Bar animated prop="value" color="#8cc16d">
         <g
@@ -67,21 +67,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.chart-title {
-  background-color: white;
-  border-radius: 4px;
-  color: $bg;
-  display: inline-block;
-  margin: 30px 0 15px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-}
+@import "../../styles/charts";
 
-.la-legend {
-  left: 0 !important;
-  margin-bottom: 30px;
-  position: relative !important;
-  text-align: center;
-  transform: none !important;
+.bar-chart {
+  @extend %charts;
 }
 </style>

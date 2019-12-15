@@ -1,6 +1,6 @@
 <template>
   <div class="line-chart">
-    <span class="chart-title strong">{{ chart }}</span>
+    <span class="chart-title strong">{{ chartTitle }}</span>
     <Cartesian autoresize :bound="[totalPlayers, 1]" :data="data">
       <template v-for="(item, index) in players">
         <la-line animated curve dot :key="index" :label="item" :prop="item" :width="2" :color="colors[index]" />
@@ -55,6 +55,20 @@ export default {
     ...mapState({
       standings: state => state.standings,
     }),
+    chartTitle() {
+      switch (this.chart) {
+        case 'Asistencias':
+          return 'Assists';
+        case 'Puntos':
+          return 'Points';
+        case 'Rebotes':
+          return 'Rebounds';
+        case 'Triples':
+          return '3 Pointers';
+        default:
+          return this.chart;
+      }
+    },
     data() {
       return this.standings.map((item) => {
         const obj = item[`${this.chart}`];
@@ -79,21 +93,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.chart-title {
-  background-color: white;
-  border-radius: 4px;
-  color: $bg;
-  display: inline-block;
-  margin: 30px 0 15px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-}
+@import "../../styles/charts";
 
-.la-legend {
-  left: 0 !important;
-  margin-bottom: 30px;
-  position: relative !important;
-  text-align: center;
-  transform: none !important;
+.line-chart {
+  @extend %charts;
+
+  .la-legend {
+    left: 0 !important;
+    margin-bottom: 30px;
+    position: relative !important;
+    text-align: center;
+    transform: none !important;
+  }
 }
 </style>
