@@ -7,7 +7,7 @@
       <div id="chart-controls">
         <div id="selector">
           <label for="seasons-select" class="seasons strong">Season</label>
-          <select id="seasons-select" v-model="selected">
+          <select id="seasons-select" v-model="selectedSeason">
             <option :key="index" v-for="(item, index) in seasons">
               {{ item }}
             </option>
@@ -44,7 +44,6 @@ export default {
       charts: ['General', 'Broker', 'Puntos', 'Rebotes', 'Triples', 'Asistencias'],
       errorMsg: 'Something went wrong :(<br>Please try again!',
       loadingMsg: 'Retrieving standings data...',
-      selected: null,
     };
   },
   computed: {
@@ -55,22 +54,30 @@ export default {
       seasons: state => state.seasons,
       standings: state => state.standings,
     }),
+    selectedSeason: {
+      get() {
+        return this.$store.state.selectedSeason;
+      },
+      set(value) {
+        this.$store.commit('setSelectedSeason', value);
+      },
+    },
   },
   created() {
     if (this.seasons.length === 0) this.$store.dispatch('getSeasons');
   },
   watch: {
-    currentSeason: {
-      handler() {
-        if (this.currentSeason) this.$store.dispatch('getStandings', this.currentSeason);
-      },
-    },
     seasons: {
       handler() {
         // eslint-disable-next-line prefer-destructuring
-        this.selected = this.seasons[0];
+        this.selectedSeason = this.seasons[0];
       },
       immediate: true,
+    },
+    selectedSeason: {
+      handler() {
+        if (this.selectedSeason) this.$store.dispatch('getStandings', this.selectedSeason);
+      },
     },
   },
 };

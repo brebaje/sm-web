@@ -1,11 +1,14 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faAngleDown,
+  faAngleUp,
   faBabyCarriage,
   faBasketballBall,
   faCocktail,
   faCode,
   faDrumstickBite,
   faDumbbell,
+  faEquals,
   faExternalLinkAlt,
   faGlobeAmericas,
   faGuitar,
@@ -41,6 +44,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const icons = {
+  faAngleDown,
+  faAngleUp,
   faBabyCarriage,
   faBasketballBall,
   faCocktail,
@@ -48,6 +53,7 @@ const icons = {
   faChartBar,
   faDrumstickBite,
   faDumbbell,
+  faEquals,
   faExternalLinkAlt,
   faFontAwesome,
   faGithubSquare,

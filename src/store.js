@@ -16,6 +16,7 @@ export default new Vuex.Store({
     history: [],
     players: [],
     seasons: [],
+    selectedSeason: null,
     standings: [],
   },
   mutations: {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     setSeasons(state, data) {
       state.seasons = data.map(s => s.Temporada);
+    },
+    setSelectedSeason(state, season) {
+      state.selectedSeason = season;
     },
     setStandings(state, data) {
       state.standings = data;
