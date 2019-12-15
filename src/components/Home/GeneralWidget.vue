@@ -130,7 +130,7 @@ export default {
         }
 
         &.same {
-          color: $yellow;
+          color: $blue;
         }
 
         &.up {
