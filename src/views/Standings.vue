@@ -15,6 +15,7 @@
         </div>
       </div>
       <div id="charts">
+        <BarChart chart="Jornada" />
         <template v-for="(item, index) in charts">
           <LineChart :key="index" :chart="item" />
         </template>
@@ -25,6 +26,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import BarChart from '@/components/Standings/BarChart.vue';
 import LineChart from '@/components/Standings/LineChart.vue';
 import ErrorMsg from '@/components/ErrorMsg.vue';
 import LoadingMsg from '@/components/LoadingMsg.vue';
@@ -32,6 +34,7 @@ import LoadingMsg from '@/components/LoadingMsg.vue';
 export default {
   name: 'Standings',
   components: {
+    BarChart,
     ErrorMsg,
     LineChart,
     LoadingMsg,
