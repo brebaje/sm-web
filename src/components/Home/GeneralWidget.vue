@@ -1,11 +1,18 @@
 <template>
   <div class="widget">
     <div class="widget-title">
-      Rankings <span class="current-season strong">{{ currentSeason }}</span>
+      General <span class="current-season strong">{{ currentSeason }}</span>
     </div>
     <ErrorMsg v-if="error" />
     <LoadingMsg v-else-if="loading" />
     <table v-else>
+      <thead>
+        <tr>
+          <td colspan="3" class="strong a-center table-title">Week #{{ currentWeek }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
       <tbody>
         <tr :key="item.player" v-for="(item, index) in table">
           <td class="a-center rank" :class="getRankingClass(index)">{{ item.position }}</td>
@@ -39,6 +46,11 @@ export default {
       loading: state => state.loading,
       standings: state => state.standings,
     }),
+    currentWeek() {
+      if (this.standings) return this.standings.length;
+
+      return 0;
+    },
     table() {
       const total = this.standings.length;
 
@@ -105,6 +117,11 @@ export default {
 
     td {
       padding: 2px 5px;
+
+      &.table-title {
+        font-size: 1.2em;
+        padding-bottom: 10px;
+      }
 
       &.rank {
         font-size: 1.2em;
