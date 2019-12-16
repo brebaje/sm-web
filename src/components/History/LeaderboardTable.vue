@@ -87,7 +87,7 @@ export default {
 <style scoped lang="scss">
 // TODO DRY refactor pending
 table {
-  border-collapse: collapse;;
+  border-collapse: collapse;
 
   thead {
     td {

@@ -5,7 +5,8 @@
       <table>
         <thead>
           <tr>
-            <td colspan="3" class="strong a-center table-title">Week #{{ currentWeek }}</td>
+            <td colspan="4" class="strong a-center table-title">Week #{{ currentWeek }}</td>
+            <td></td>
             <td></td>
             <td></td>
           </tr>
@@ -18,7 +19,8 @@
               <font-awesome-icon size="lg" icon="angle-down" class="position down" v-else-if="item.previousPosition === 'down'" />
               <font-awesome-icon icon="equals" class="position same" v-else />
             </td>
-            <td>{{ item.player }}</td>
+            <td class="player">{{ item.player }}</td>
+            <td class="a-right total">{{ item.value }}</td>
           </tr>
         </tbody>
       </table>
@@ -60,6 +62,7 @@ export default {
             player,
             position,
             previousPosition,
+            value: data[player],
           });
         });
 
@@ -92,14 +95,14 @@ export default {
   @extend %widget;
 
   .widget-content {
-    padding: 0 15px 15px 25px;
+    padding: 15px 0 25px 25px;
 
     table {
-      padding: 15px;
+      border-collapse: collapse;
 
       td {
         font-size: 1.1em;
-        padding: 2px 5px;
+        padding: 5px 5px;
 
         &.table-title {
           font-size: 1.2em;
@@ -136,6 +139,16 @@ export default {
           &.up {
             color: $green;
           }
+        }
+
+        &.player {
+          padding-right: 15px;
+        }
+
+        &.total {
+          background-color: white;
+          color: $bg;
+          font-weight: bold;
         }
       }
     }
