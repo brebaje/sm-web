@@ -92,7 +92,7 @@ export default {
   @extend %widget;
 
   .widget-content {
-    padding: 20px 15px 20px 25px;
+    padding: 0 15px 15px 25px;
 
     table {
       padding: 15px;

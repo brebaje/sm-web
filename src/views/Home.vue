@@ -112,6 +112,7 @@ export default {
       justify-content: center;
 
       .left-widget {
+        align-self: flex-start;
         margin-bottom: 30px;
 
         @include m-screen {
