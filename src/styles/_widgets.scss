@@ -1,0 +1,13 @@
+// Widgets shared CSS
+
+%widget {
+  border: 2px solid white;
+
+  .widget-title {
+    background-color: white;
+    color: $bg;
+    font-size: 1.1em;
+    padding: 5px;
+    text-align: center;
+  }
+}

@@ -1,49 +1,38 @@
 <template>
   <div class="widget">
-    <div class="widget-title">
-      General <span class="current-season strong">{{ currentSeason }}</span>
+    <div class="strong widget-title">General</div>
+    <div class="widget-content">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="3" class="strong a-center table-title">Week #{{ currentWeek }}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr :key="item.player" v-for="(item, index) in table">
+            <td class="a-center rank" :class="getRankingClass(index)">{{ item.position }}</td>
+            <td class="a-center">
+              <font-awesome-icon size="lg" icon="angle-up" class="position up" v-if="item.previousPosition === 'up'" />
+              <font-awesome-icon size="lg" icon="angle-down" class="position down" v-else-if="item.previousPosition === 'down'" />
+              <font-awesome-icon icon="equals" class="position same" v-else />
+            </td>
+            <td>{{ item.player }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <ErrorMsg v-if="error" />
-    <LoadingMsg v-else-if="loading" />
-    <table v-else>
-      <thead>
-        <tr>
-          <td colspan="3" class="strong a-center table-title">Week #{{ currentWeek }}</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr :key="item.player" v-for="(item, index) in table">
-          <td class="a-center rank" :class="getRankingClass(index)">{{ item.position }}</td>
-          <td class="a-center">
-            <font-awesome-icon size="lg" icon="angle-up" class="position up" v-if="item.previousPosition === 'up'" />
-            <font-awesome-icon size="lg" icon="angle-down" class="position down" v-else-if="item.previousPosition === 'down'" />
-            <font-awesome-icon icon="equals" class="position same" v-else />
-          </td>
-          <td>{{ item.player }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import ErrorMsg from '@/components/ErrorMsg.vue';
-import LoadingMsg from '@/components/LoadingMsg.vue';
 
 export default {
-  name: 'Widget',
-  components: {
-    ErrorMsg,
-    LoadingMsg,
-  },
+  name: 'GeneralWidget',
   computed: {
     ...mapState({
-      currentSeason: state => state.currentSeason,
-      error: state => state.error,
-      loading: state => state.loading,
       standings: state => state.standings,
     }),
     currentWeek() {
@@ -97,61 +86,56 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../styles/widgets';
+
 .widget {
-  border: 2px solid white;
+  @extend %widget;
 
-  .widget-title {
-    background-color: white;
-    color: $bg;
-    padding: 5px;
-    text-align: center;
+  .widget-content {
+    padding: 20px 15px 20px 25px;
 
-    .current-season {
-      color: $red;
-      font-size: 0.9em;
-    }
-  }
+    table {
+      padding: 15px;
 
-  table {
-    padding: 15px;
+      td {
+        font-size: 1.1em;
+        padding: 2px 5px;
 
-    td {
-      padding: 2px 5px;
-
-      &.table-title {
-        font-size: 1.2em;
-        padding-bottom: 10px;
-      }
-
-      &.rank {
-        font-size: 1.2em;
-
-        &.bottom {
-          background-color: rgba($red, 0.8);
+        &.table-title {
+          font-size: 1.2em;
+          padding-bottom: 20px;
         }
 
-        &.first {
-          background-color: rgba($yellow, 0.95);
+        &.rank {
+          font-size: 1.2em;
+
+          &.bottom {
+            background-color: rgba($red, 0.8);
+          }
+
+          &.first {
+            background-color: rgba($yellow, 0.95);
+          }
+
+          &.top {
+            background-color: rgba($green, 0.8);
+          }
         }
 
-        &.top {
-          background-color: rgba($green, 0.8);
-        }
-      }
+        .position {
+          margin-left: 10px;
 
-      .position {
-        margin-left: 10px;
+          &.down {
+            color: $red;
+          }
 
-        &.down {
-          color: $red;
-        }
+          &.same {
+            color: $blue;
+          }
 
-        &.same {
-          color: $blue;
-        }
-
-        &.up {
-          color: $green;
+          &.up {
+            color: $green;
+          }
         }
       }
     }

@@ -85,9 +85,17 @@ export default {
 
 #about {
   @extend %view;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   font-family: $codeFont;
   font-feature-settings: "calt" 1; // IE 10+, Edge
   font-variant-ligatures: contextual; // CodeMirror
+  justify-content: center;
+
+  @include sm-screen {
+    padding-top: 20px;
+  }
 
   .section-title {
     color: $blue;
