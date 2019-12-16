@@ -42,7 +42,7 @@ export default new Vuex.Store({
       state.selectedSeason = season;
     },
     setStandings(state, data) {
-      state.standings = data;
+      state.standings = data.sort((a, b) => a.Numero - b.Numero);
     },
     unsetError(state) {
       state.error = false;
